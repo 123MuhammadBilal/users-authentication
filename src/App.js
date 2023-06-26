@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./common/Header";
+import Footer from "./common/Footer";
+import Authentication from "./components/Authentication";
+import Home from "./components/Home";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import '../src/css/style.css'
+
+
+const Layout = () => {
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Authentication />,
+        },
+        {
+          path: "home/:mail/:pass",
+          element: <Home/>,
+        },
+        {
+          path: "*",
+          element: (
+          
+            <p>404 Page Not Found</p>
+          ),
+        },
+      ],
+    },
+  ]);
+  return <RouterProvider router={router} />;
 }
 
 export default App;
