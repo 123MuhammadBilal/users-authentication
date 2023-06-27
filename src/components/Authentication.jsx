@@ -30,19 +30,20 @@ const Authentication = () => {
     const newUser = {
         email: data.get("email"),
         password: data.get("password"),
+        uid:Math.random(Math.random())*100-Math.random()
     }
     if(SignInOrSignUp){
         console.log({myUsers})
         const authUser = myUsers?.auths?.find((user)=>user.email === newUser.email && user.password === newUser.password)
         if (authUser) {
-            navigate('/home');
+            navigate(`/home/${authUser.uid}`);
         }else{
             alert('wrong password or user gmail')
         }
 
     }else{
         dispatch(onsignUp(newUser))
-        navigate('/home');
+        alert('Account has been created');
     }
   };
 

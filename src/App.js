@@ -2,7 +2,7 @@ import Header from "./common/Header";
 import Footer from "./common/Footer";
 import Authentication from "./components/Authentication";
 import Home from "./components/Home";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
 import '../src/css/style.css'
 
 
@@ -27,7 +27,7 @@ function App() {
           element: <Authentication />,
         },
         {
-          path: "home/:mail/:pass",
+          path: 'home/:uid',
           element: <Home/>,
         },
         {
